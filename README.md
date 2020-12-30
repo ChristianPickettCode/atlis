@@ -1,14 +1,17 @@
 # atlis
 
-> Contactless data transfers
+> Atlis React.js Library
 
 [![NPM](https://img.shields.io/npm/v/atlis.svg)](https://www.npmjs.com/package/atlis) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+
+The Atlis React Library provides access to the Atlis data transfer API.
 
 ## Install
 
 ```bash
-yarn add atlis
 npm install --save atlis
+# or
+yarn add atlis
 ```
 
 ## Usage
@@ -35,4 +38,4 @@ export default App;
 
 ## License
 
-MIT © [ChristianPickettCode](https://github.com/ChristianPickettCode)
+MIT 
