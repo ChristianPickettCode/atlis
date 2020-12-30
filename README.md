@@ -5,7 +5,8 @@
 [![NPM](https://img.shields.io/npm/v/atlis.svg)](https://www.npmjs.com/package/atlis) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 The Atlis React Library provides access to the Atlis data transfer API.
-[atlis.dev](https://atlis.dev)
+
+> [atlis.dev](https://atlis.dev)
 
 ## Install
 
