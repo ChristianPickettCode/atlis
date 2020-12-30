@@ -28,4 +28,3 @@ class Example extends Component {
 ## License
 
 MIT © [ChristianPickettCode](https://github.com/ChristianPickettCode)
-# atlis
