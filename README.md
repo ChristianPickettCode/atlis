@@ -7,8 +7,8 @@
 ## Install
 
 ```bash
-npm install --save atlis
 yarn add atlis
+npm install --save atlis
 ```
 
 ## Usage

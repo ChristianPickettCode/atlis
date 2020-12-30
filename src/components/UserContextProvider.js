@@ -1,5 +1,4 @@
 import React, { useReducer, useState, useEffect } from 'react';
-// import Index from './index';
 import { UserContext } from "./UserContext";
 import { userReducer } from "./UserReducer";
 
@@ -54,14 +53,12 @@ const UserContextProvider = (props) => {
         localStorage.setItem("user", 
             JSON.stringify(d)
         )
-        // console.log(d);
         response(d);
     }
 
     const getUser = () => {
         let user = localStorage.getItem("user");
         if (user) {
-            // console.log(user);
             response(JSON.parse(user));
             return true;
         }
@@ -70,12 +67,10 @@ const UserContextProvider = (props) => {
 
     const openWS = () => {
         const isUser = getUser();
-        //console.log(props.request.appID);
         if (!isUser) {
             setRequestString(props.request.data.join("&"));
             const ws = new W3CWebSocket(`wss://u9j9kermu5.execute-api.us-east-1.amazonaws.com/dev`);
             ws.onopen = () =>  {
-                // console.log("connected.");
                 ws.send(JSON.stringify({
                     message: "connect",
                     appID: props.request.appID,
@@ -83,15 +78,10 @@ const UserContextProvider = (props) => {
                 }));
             };
 
-            ws.onclose = () => {
-                // console.log("disconnected.");
-            };
-
             ws.onmessage = (msg) =>  {
                 if (msg.type === "message") {
                     const data = JSON.parse(msg.data);
                     if (data.status === "connect") {
-                        console.log(data)
                         setId(data.id);
                         setIsShown(true);
                         ws.id = data.id;
@@ -101,10 +91,6 @@ const UserContextProvider = (props) => {
                     }
                 }
             };
-
-            // return () => {
-            //     ws.close();
-            // }
         }
 
     }
@@ -120,7 +106,7 @@ const UserContextProvider = (props) => {
             </UserContext.Provider>
             <Dialog
               isShown={isShown}
-              header={<div style={{margin:"auto"}}><p style={{margin:"0"}}>Connect</p></div>}
+              header={<div style={{margin:"auto"}}><p style={{margin:"0"}}>Connect with <a href="https://atlis.dev" target="blank" style={{color:"#1890ff", textDecoration:"none"}}>Atlis</a></p></div>}
               hasFooter={false}
               onCloseComplete={() => setIsShown(false) }
               width={290}
