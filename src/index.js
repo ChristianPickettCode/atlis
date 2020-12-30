@@ -1,6 +1,10 @@
-import React from 'react'
-import styles from './styles.module.css'
+import React from 'react';
+import UserContextProvider from  "./components/UserContextProvider";
 
-export const ExampleComponent = ({ text }) => {
-  return <div className={styles.test}>Example Component: {text}</div>
+const Bridge = (props) => {
+    return (
+        <UserContextProvider {...props} />
+    )
 }
+
+export default Bridge;
