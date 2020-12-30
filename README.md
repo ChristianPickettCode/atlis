@@ -14,14 +14,15 @@ npm install --save atlis
 ## Usage
 
 ```jsx
-import React from 'react'
-import Atlis from 'atlis'
+import React from 'react';
+import Atlis from 'atlis';
+import Home from './components/home';
 
 const App = () => {
   return(
       <Atlis 
           request={{ 
-              data: ["email", "name"], // "name" is optional
+              data: ["email", "name"], 
               appName: "your app name", 
               appID: "your app id" }}>
           <Home />

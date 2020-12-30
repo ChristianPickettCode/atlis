@@ -106,7 +106,7 @@ const UserContextProvider = (props) => {
             </UserContext.Provider>
             <Dialog
               isShown={isShown}
-              header={<div style={{margin:"auto"}}><p style={{margin:"0"}}>Connect with <a href="https://atlis.dev" target="blank" style={{color:"#1890ff", textDecoration:"none"}}>Atlis</a></p></div>}
+              header={<div style={{margin:"0 auto"}}><p style={{margin:"0", fontFamily:"sans-serif", fontSize:"16px"}}>Connect with <a href="https://atlis.dev" target="blank" style={{color:"#1890ff", textDecoration:"none"}}>Atlis</a></p></div>}
               hasFooter={false}
               onCloseComplete={() => setIsShown(false) }
               width={290}
