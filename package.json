@@ -1,6 +1,6 @@
 {
   "name": "atlis",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "contactless data transfers",
   "author": "ChristianPickettCode",
   "license": "MIT",
@@ -53,6 +53,7 @@
   "dependencies": {
     "crypto-js": "^4.0.0",
     "evergreen-ui": "^5.1.2",
+    "jsonwebtoken": "^8.5.1",
     "qrcode.react": "^1.0.0",
     "websocket": "^1.0.33"
   }

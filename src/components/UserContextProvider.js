@@ -6,18 +6,21 @@ import QRCode from "qrcode.react";
 import { w3cwebsocket as W3CWebSocket } from "websocket";
 import crypto from "crypto-js";
 
-import { Dialog } from "evergreen-ui"
+import { Dialog } from "evergreen-ui";
+import jwt from "jsonwebtoken";
 
 const UserContextProvider = (props) => {
     const [user, dispatch] = useReducer(userReducer, null);
 
     const [id, setId] = useState();
-    const url = "https://www.esotterik.io"; 
+    const url = "https://app.atlis.dev";
     const [requestString, setRequestString] = useState()
 
     const [isShown, setIsShown] = useState(false);
 
     const [u, setU] = useState(false);
+
+    const [req, setReq] = useState();
 
     const logout = () => {
         localStorage.removeItem("user");
@@ -68,7 +71,7 @@ const UserContextProvider = (props) => {
     const openWS = () => {
         const isUser = getUser();
         if (!isUser) {
-            setRequestString(props.request.data.join("&"));
+            setRequestString(props.request.data.join(","));
             const ws = new W3CWebSocket(`wss://u9j9kermu5.execute-api.us-east-1.amazonaws.com/dev`);
             ws.onopen = () =>  {
                 ws.send(JSON.stringify({
@@ -85,6 +88,19 @@ const UserContextProvider = (props) => {
                         setId(data.id);
                         setIsShown(true);
                         ws.id = data.id;
+
+                        const d = {
+                            request: props.request.data,
+                            appName: props.request.appName,
+                            appID: props.request.appID
+                        }
+                        
+                        const resData = jwt.sign(d, data.id);
+
+                        const res = `${url}/welcome?requestID=${data.id}&data=${resData}`;
+                        console.log(res);
+                        setReq(res);
+
                     }
                     if (data.status === "send") {
                         parse(data.data, ws);
@@ -111,9 +127,9 @@ const UserContextProvider = (props) => {
               onCloseComplete={() => setIsShown(false) }
               width={290}
               >
-              { id ? 
+              { id && req ? 
                   <div style={{width:"256px", margin:"auto"}}>
-                      <QRCode size={256}  style={{margin:"auto"}} fgColor="#282c34" value={`${url}/welcome/${id}/?${requestString}&appName=${props.request.appName}&appID=${props.request.appID}`}  onClick={() => console.log(id)}/>
+                      <QRCode size={256}  style={{margin:"auto"}} fgColor="#282c34" value={req}  onClick={() => console.log(id)}/>
                   </div>
               : ""}
                   
