@@ -62,8 +62,14 @@ const UserContextProvider = (props) => {
     const getUser = () => {
         let user = localStorage.getItem("atlis_london");
         if (user) {
-            response(jwt.verify(user, props.request.appID));
-            return true;
+            try {
+                response(jwt.verify(user, props.request.appID));
+                return true;
+            } catch(err) {
+                console.log(err);
+                logout();
+                return false;
+            }
         }
         return false;
     }
