@@ -23,7 +23,7 @@ const UserContextProvider = (props) => {
     const [req, setReq] = useState();
 
     const logout = () => {
-        localStorage.removeItem("user");
+        localStorage.removeItem("atlis_london");
         localStorage.removeItem("app");
         localStorage.removeItem("request");
         window.location.reload();
@@ -53,16 +53,16 @@ const UserContextProvider = (props) => {
     const parse = (encryptedData, ws) => {
         const parsedData = crypto.AES.decrypt(encryptedData, ws.id).toString(crypto.enc.Utf8)
         const d = JSON.parse(parsedData);
-        localStorage.setItem("user", 
-            JSON.stringify(d)
+        localStorage.setItem("atlis_london", 
+            jwt.sign(d, props.request.appID)
         )
         response(d);
     }
 
     const getUser = () => {
-        let user = localStorage.getItem("user");
+        let user = localStorage.getItem("atlis_london");
         if (user) {
-            response(JSON.parse(user));
+            response(jwt.verify(user, props.request.appID));
             return true;
         }
         return false;
