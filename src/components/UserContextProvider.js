@@ -78,7 +78,7 @@ const UserContextProvider = (props) => {
         const isUser = getUser();
         if (!isUser) {
             setRequestString(props.request.data.join(","));
-            const ws = new W3CWebSocket(`wss://u9j9kermu5.execute-api.us-east-1.amazonaws.com/dev`);
+            const ws = new W3CWebSocket(`wss://wifjuas349.execute-api.us-east-1.amazonaws.com/dev`);
             ws.onopen = () =>  {
                 ws.send(JSON.stringify({
                     message: "connect",
