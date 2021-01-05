@@ -133,12 +133,14 @@ const UserContextProvider = (props) => {
               onCloseComplete={() => setIsShown(false) }
               width={290}
               >
-              { id && req ? 
-                  <div style={{width:"256px", margin:"auto"}}>
-                      <QRCode size={256}  style={{margin:"auto"}} fgColor="#282c34" value={req}  onClick={() => console.log(id)}/>
-                  </div>
-              : ""}
-                  
+                <div style={{textAlign:"center", margin:"0", padding:"0"}}>
+                    <p style={{marginTop:"0"}}>Scan QR code with phone camera</p>
+                { id && req ? 
+                    <div style={{width:"256px", margin:"auto"}}>
+                        <QRCode size={256}  style={{margin:"auto"}} fgColor="#282c34" value={req}  onClick={() => console.log(id)}/>
+                    </div>
+                : ""}
+                </div>
               </Dialog>
         </div>
     )
