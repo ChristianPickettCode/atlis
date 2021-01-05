@@ -21,6 +21,7 @@ const UserContextProvider = (props) => {
     const [u, setU] = useState(false);
 
     const [req, setReq] = useState();
+    const [valid, setValid] = useState(true);
 
     const logout = () => {
         localStorage.removeItem("atlis_london");
@@ -111,6 +112,10 @@ const UserContextProvider = (props) => {
                     if (data.status === "send") {
                         parse(data.data, ws);
                     }
+                    if (data.status === "notValid") {
+                        console.log('NOT VALID DOMAIN')
+                        setValid(false);
+                    }
                 }
             };
         }
@@ -130,9 +135,10 @@ const UserContextProvider = (props) => {
               isShown={isShown}
               header={<div style={{margin:"0 auto"}}><p style={{margin:"0", fontFamily:"sans-serif", fontSize:"16px"}}>Connect with <a href="https://atlis.dev" target="blank" style={{color:"#1890ff", textDecoration:"none"}}>Atlis</a></p></div>}
               hasFooter={false}
-              onCloseComplete={() => setIsShown(false) }
+              onCloseComplete={() => {setIsShown(false); if (!valid) window.location.reload() } }
               width={290}
               >
+                {valid ? 
                 <div style={{textAlign:"center", margin:"0", padding:"0"}}>
                     <p style={{marginTop:"0"}}>Scan QR code with phone camera</p>
                 { id && req ? 
@@ -141,6 +147,13 @@ const UserContextProvider = (props) => {
                     </div>
                 : ""}
                 </div>
+                
+                : 
+                <div>
+                    <p>Sorry access has not been granted to your email yet.</p>
+                </div>
+                }
+                
               </Dialog>
         </div>
     )
