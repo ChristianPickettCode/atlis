@@ -41,3 +41,7 @@ export default App;
 ## License
 
 MIT 
+
+<div style="display:flex;">
+  <img alt="connect with atlis" src="./connect_with_atlis" height="300">
+</div>
