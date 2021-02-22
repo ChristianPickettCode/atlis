@@ -43,5 +43,5 @@ export default App;
 MIT 
 
 <div style="display:flex;">
-  <img alt="connect with atlis" src="./connect_with_atlis" height="300">
+  <img alt="connect with atlis" src="./connect_with_atlis.png" height="300">
 </div>
